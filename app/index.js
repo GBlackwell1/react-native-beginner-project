@@ -10,6 +10,7 @@ import {
 
 function Home() {
     const router = useRouter();
+    const [searchTerm, setSearchTerm] = useState("");
     // SafeAreaView is a view that displays things "safely",
     // aka avoiding things like notches, cameras, and home buttons
     // on a wide range of mobile devices
@@ -54,7 +55,15 @@ function Home() {
                         padding: SIZES.medium
                     }}
                 >
-                    <Welcome />
+                    <Welcome 
+                        searchTerm={searchTerm}
+                        setSearchTerm={setSearchTerm}
+                        handleClick={() => {
+                            if(searchTerm) {
+                                router.push(`/search/${searchTerm}`)
+                            }
+                        }}
+                    />
                     <Popularjobs />
                     <Nearbyjobs />
                 </View>
